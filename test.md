@@ -1,6 +1,6 @@
 ---
-layout: post
 title: test
+layout: default
 ---
 
-Ouech
+Ouech de ouf
