@@ -5,12 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="interface.js">
+    <script type="module">
+        import Node from './node.mjs';
+        import { event } from './slider.mjs';
+
+        event.push((x, y) => {
+            console.log(x, y);
+            window.node.set('freq', x);
+        });
+        document.querySelector('#start').addEventListener('click', async () => {
+            window.node = new Node();
+            await window.node.init(); // ASYNC !
+            window.node.start();
+        });
     </script>
 </head>
 
 <body>
-    <button onclick="cl()">CLICK</button>
+    <button id=start>CLICK</button>
+    <canvas width=500 height=500 style='background:red;'></canvas>
+
 </body>
 
 </html>

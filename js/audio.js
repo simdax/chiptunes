@@ -3,7 +3,7 @@ class IProcessor extends AudioWorkletProcessor {
         const [channels] = outs;
         for (const channel of channels) {
             for (const sample in channel) {
-                const value = this.generate();
+                const value = this.generate(params, sample);
                 channel[sample] = value;
             }
         }
@@ -15,18 +15,33 @@ class ISignal extends IProcessor {
     time = 0.0;
     sr = 48000;
     tau = Math.PI * 2;
-    freq = 220.0;
-    amp = 0.1;
 }
 
-class Signal extends ISignal {}
+class Oscillator extends ISignal {
+    static get parameterDescriptors() {
+        return [{
+            name: 'freq',
+            defaultValue: 440,
+            minValue: 0,
+            maxValue: 20000,
+            automationRate: 'a-rate'
+        }, {
+            name: 'amp',
+            defaultValue: 0.3,
+            minValue: 0,
+            maxValue: 0.6,
+            automationRate: 'a-rate'
+        },
+        ]
+    }
+}
 
 registerProcessor('fm',
-    class extends ISignal {
-        generate() {
+    class extends Oscillator {
+        generate({ freq, amp }, i) {
             const val = Math.sin(this.time);
-            this.time += (this.tau / this.sr) * this.freq;
-            return val * this.amp;
+            this.time += (this.tau / this.sr) * freq[0];
+            return val * amp[0];
         }
     }
 )
