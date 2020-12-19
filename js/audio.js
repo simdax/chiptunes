@@ -36,11 +36,50 @@ class Oscillator extends ISignal {
     }
 }
 
-registerProcessor('fm',
+class FM extends ISignal {
+    static get parameterDescriptors() {
+        return [{
+            name: 'index_mod',
+            defaultValue: 1,
+            minValue: 0,
+            maxValue: 200,
+            automationRate: 'a-rate'
+        }, {
+            name: 'freq_mod',
+            defaultValue: 1,
+            minValue: 0,
+            maxValue: 200,
+            automationRate: 'a-rate'
+        },
+        ...Oscillator.parameterDescriptors
+        ];
+    }
+}
+
+registerProcessor('osc',
     class extends Oscillator {
         generate({ freq, amp }, i) {
             const val = Math.sin(this.time);
             this.time += (this.tau / this.sr) * freq[0];
+            return val * amp[0];
+        }
+    }
+)
+
+registerProcessor('fm',
+    class extends FM {
+        time2 = 0.0;
+
+        generate({ freq, amp, freq_mod, index_mod }, i) {
+            const val = Math.sin(
+                this.time
+                 + (Math.sin(this.time2) * freq_mod[0])
+            )
+            ;
+            const inc = (this.tau / this.sr) * freq[0];
+            const inc2 = (this.tau / this.sr) * (freq[0] * index_mod[0]);
+            this.time += inc;
+            this.time2 += inc2
             return val * amp[0];
         }
     }
