@@ -1,7 +1,6 @@
 ---
-layout: page
-title: "test"
-permalink: /test
+layout: post
+title: test
 ---
 
 Ouech
