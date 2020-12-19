@@ -3,7 +3,7 @@ title: test
 layout: default
 ---
 
-<script href="/js/interface.js"></script>
+<script href="/chiptunes/js/interface.js"></script>
 
 # Presentation  
 
