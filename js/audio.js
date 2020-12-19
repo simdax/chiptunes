@@ -19,6 +19,8 @@ class ISignal extends IProcessor {
     amp = 0.1;
 }
 
+class Signal extends ISignal {}
+
 registerProcessor('fm',
     class extends ISignal {
         generate() {

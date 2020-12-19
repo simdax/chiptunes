@@ -33,3 +33,4 @@ Ces chips designent donc en realite des 'electronic chips', ou en francais des p
 On parle de puces parce qu'elles peuvent etre petites et rondes (meme si pas toujours), mais le terme
 preferable sera 'circuit integre'.
 
+<a href="/test">LIEN</a>

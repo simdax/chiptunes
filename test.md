@@ -3,18 +3,12 @@ title: test
 layout: default
 ---
 
+<script href="/js/interface.js"></script>
+
 # Presentation  
 
 ## La synthese sonore
 
+## Yes
 
-
-##
-<script>
-    function hello() {
-        console.log("fsduhjfs:");
-    }
-</script>
-<button onclick="hello()" >click</button>
-
-<a href="/test"></a>
+<button onclick="cl()" >click</button>
