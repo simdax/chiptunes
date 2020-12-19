@@ -34,3 +34,9 @@ On parle de puces parce qu'elles peuvent etre petites et rondes (meme si pas tou
 preferable sera 'circuit integre'.
 
 ##
+<script>
+    function hello() {
+        console.log("fsduhjfs:");
+    }
+</script>
+<button onclick="hello()" click></button>
