@@ -32,4 +32,4 @@ peut emettre des sons. Pour cela, il sera mu par un aimant, lui-meme sensible a 
 Ces chips designent donc en realite des 'electronic chips', ou en francais des puces electroniques.
 On parle de puces parce qu'elles peuvent etre petites et rondes (meme si pas toujours), mais le terme preferable sera 'circuit integre'.
 
-<a href="/chiptunes/test">LIEN</a>
+<a href="/chiptunes/FM/intro">LIEN</a>
