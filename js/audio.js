@@ -3,11 +3,17 @@ class IProcessor extends AudioWorkletProcessor {
         const [channels] = outs;
         for (const channel of channels) {
             for (const sample in channel) {
-                const value = this.generate(params, sample);
-                channel[sample] = value;
+                channel[sample] = this.generate(this.get_params(params, sample));
             }
         }
         return true;
+    }
+
+    get_params(args, i) {
+        return Object.entries(args).reduce((ret, [key, val]) => {
+            ret[key] = val[i] || val[0];
+            return ret;
+        }, {})
     }
 }
 
@@ -58,10 +64,10 @@ class FM extends ISignal {
 
 registerProcessor('osc',
     class extends Oscillator {
-        generate({ freq, amp }, i) {
+        generate({ freq, amp }) {
             const val = Math.sin(this.time);
-            this.time += (this.tau / this.sr) * freq[0];
-            return val * amp[0];
+            this.time += (this.tau / this.sr) * freq;
+            return val * amp;
         }
     }
 )
@@ -70,17 +76,13 @@ registerProcessor('fm',
     class extends FM {
         time2 = 0.0;
 
-        generate({ freq, amp, freq_mod, index_mod }, i) {
+        generate({ freq, amp, freq_mod, index_mod }) {
             const val = Math.sin(
-                this.time
-                 + (Math.sin(this.time2) * freq_mod[0])
-            )
-            ;
-            const inc = (this.tau / this.sr) * freq[0];
-            const inc2 = (this.tau / this.sr) * (freq[0] * index_mod[0]);
-            this.time += inc;
-            this.time2 += inc2
-            return val * amp[0];
+                this.time + (Math.sin(this.time2) * index_mod)
+            );
+            this.time += (this.tau / this.sr) * freq;
+            this.time2 += (this.tau / this.sr) * (freq * freq_mod);
+            return val * amp;
         }
     }
 )

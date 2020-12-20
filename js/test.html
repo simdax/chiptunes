@@ -5,39 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="module">
-        import Node, { MyAudioContext, FMNode } from './node.mjs';
-        import { event } from './slider.mjs';
 
-        const start = document.querySelector('#start');
-        const canvas = document.querySelector('canvas');
-        const canvas_ctx = canvas.getContext('2d');
-        let node;
+    <script type="module" src="fm.mjs"> </script>
 
-        event.push((x, y) => {
-            if (node && node.on) {
-                node.set('freq_mod', x / canvas.width * 100);
-                node.set('index_mod', y / canvas.height * 2);
-            }
-            canvas_ctx.clearRect(0, 0, canvas.width, canvas.height);
-            canvas_ctx.beginPath();
-            canvas_ctx.fillStyle = 'blue';
-            canvas_ctx.rect(x, y, 10, 10)
-            canvas_ctx.closePath();
-            canvas_ctx.fill();
-        });
-        start.addEventListener('click', async () => {
-            const ctx = new MyAudioContext();
-            await ctx.init();
-            node = new Node(ctx, 'fm');
-
-            node.start();
-            node.play_mel(
-                [0, 0, 0, 1, 2, 1, 0, 2, 1, 1, 0],
-                [1, 1, 1, 1, 2, 2, 1, 1 ,1 ,1 ,4]
-            );
-        });
-    </script>
 </head>
 
 <body>

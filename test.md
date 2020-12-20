@@ -3,7 +3,7 @@ title: test
 layout: default
 ---
 
-<script href="/chiptunes/js/interface.js"></script>
+<script type="module" src="/chiptunes/js/fm.mjs"> </script>
 
 # Presentation  
 
@@ -11,4 +11,7 @@ layout: default
 
 ## Yes
 
-<button onclick="cl()" >click</button>
+<button id=start>CLICK</button>
+<canvas width=200 height=200 style='background:red;'></canvas>
+
+OUAIS je sais pas?

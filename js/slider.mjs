@@ -1,8 +1,9 @@
+export const event = [];
+
 const canvas = document.querySelector('canvas');
 let clicked = false;
 let x = 0;
 let y = 0;
-export const event = [];
 
 function updateXY(ev) {
     const [_x, _y] = [canvas.offsetLeft, canvas.offsetTop];
