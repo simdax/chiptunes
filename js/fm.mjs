@@ -15,8 +15,8 @@ event.push((x, y) => {
 start.addEventListener('click', async () => {
     if (node.start()) {
         play_mel(
-            Array(10).fill(0).map(() => Math.ceil(Math.random() * 7)),
-            Array(10).fill(0).map(() => Math.ceil(Math.random() * 3)),
+            Array(10).fill(0).map(() => Math.floor(Math.random() * 7)),
+            Array(10).fill(0).map(() => Math.floor(Math.random() * 3)),
             (n) => {
                 node.freq = midi_to_freq(n);
             }
