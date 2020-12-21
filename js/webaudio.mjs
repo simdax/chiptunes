@@ -43,6 +43,14 @@ export default class {
         Modulator_index.gain.value = freq;
     }
 
+    get index_modulator() {
+        return Modulator_index.gain.value;
+    }
+
+    get freq_modulator() {
+        return Modulator_freq; 
+    }
+    
     set freq_modulator(freq) {
         Modulator_freq = freq;
         Modulator.frequency.value = Carrier.frequency.value * Modulator_freq;
