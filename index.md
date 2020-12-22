@@ -1,3 +1,7 @@
+---
+layout: default
+---
+
 # Qu'est-ce qu'une chiptune?
 
 ## Une Chiptune est une tune produite aux moyens de Chips 

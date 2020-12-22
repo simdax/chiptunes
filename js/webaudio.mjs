@@ -1,12 +1,23 @@
-var ctx = new AudioContext();
+import audio from './AudioContext.mjs';
 
-// private values 
-const Modulator = ctx.createOscillator();
-const Carrier = ctx.createOscillator();
-const Master = ctx.createGain();
-const Modulator_index = ctx.createGain();
+let Modulator;
+let Carrier;
+let Master;
+let Modulator_index;
 let Modulator_freq = 1;
 let on = false;
+let ctx;
+
+// private values 
+audio.then(context => {
+    Modulator = context.createOscillator();
+    Carrier = context.createOscillator();
+    Master = context.createGain();
+    Modulator_index = context.createGain();
+    Modulator_freq = 1;
+    on = false;
+    ctx = context;
+})
 
 export default class {
 
@@ -48,12 +59,16 @@ export default class {
     }
 
     get freq_modulator() {
-        return Modulator_freq; 
+        return Modulator_freq;
     }
-    
+
     set freq_modulator(freq) {
         Modulator_freq = freq;
         Modulator.frequency.value = Carrier.frequency.value * Modulator_freq;
+    }
+
+    set analyseur(analyseur) {
+        Master.connect(analyseur);
     }
 
 }
