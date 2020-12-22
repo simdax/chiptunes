@@ -2,12 +2,13 @@ import { midi_to_freq, play_mel } from './utils.mjs';
 import FMNode from './webaudio.mjs';
 import { event } from './slider.mjs';
 import cursor, { print_vals } from './cursor.mjs';
-import get_analyseur, { genererVisualisation } from './visu.mjs';
+import get_analyseur, { Visualizers } from './visu.mjs';
 
 const start = document.querySelector('#start');
 const canvas = document.querySelector('canvas');
 
 get_analyseur.then(analyseur => {
+    const visualizers = new Visualizers();
     const node = new FMNode();
     node.analyseur = analyseur;
 
@@ -23,7 +24,7 @@ get_analyseur.then(analyseur => {
     });
     start.addEventListener('click', async () => {
         if (node.start()) {
-            genererVisualisation();
+            visualizers.visualize();
             play_mel(
                 Array(10).fill(0).map(() => Math.floor(Math.random() * 7)),
                 Array(10).fill(0).map(() => Math.floor(Math.random() * 3)),
@@ -31,6 +32,8 @@ get_analyseur.then(analyseur => {
                     node.freq = midi_to_freq(n);
                 }
             );
+        } else {
+            visualizers.clean();
         }
     });
 })
