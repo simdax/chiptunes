@@ -53,9 +53,15 @@ class pVisu {
   }
 
   clean() {
-    this.canvasCtx.clearRect(0, 0, LARGEUR, HAUTEUR);
-    this.canvasCtx.fillStyle = "red";
-    this.canvasCtx.fillRect(0, 0, LARGEUR, HAUTEUR);
+    const canvas = document.querySelector(this.label);
+    const canvasCtx = canvas.getContext('2d');
+    const LARGEUR = canvas.width;
+    const HAUTEUR = canvas.height;
+
+    cancelAnimationFrame(this.renduVisuel);
+    canvasCtx.clearRect(0, 0, LARGEUR, HAUTEUR);
+    canvasCtx.fillStyle = "red";
+    canvasCtx.fillRect(0, 0, LARGEUR, HAUTEUR);
   }
 
 }
