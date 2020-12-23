@@ -26,14 +26,16 @@ get_analyseur.then(analyseur => {
     });
     start.addEventListener('click', async () => {
         if (node.start()) {
-            visualizers.visualize();
-            play_mel(
-                Array(10).fill(0).map(() => Math.floor(Math.random() * 7)),
-                Array(10).fill(0).map(() => Math.floor(Math.random() * 3)),
-                (n) => {
-                    node.freq = midi_to_freq(n);
-                }
-            );
+            // visualizers.visualize();
+            [0, 1, 2].forEach(i => {
+                play_mel(
+                    Array(10).fill(0).map(() => Math.floor(Math.random() * 7)),
+                    Array(10).fill(0).map(() => Math.floor(Math.random() * 3)),
+                    (n) => {
+                        node.freq(i, midi_to_freq(n));
+                    }
+                );
+            });
         } else {
             visualizers.clean();
         }

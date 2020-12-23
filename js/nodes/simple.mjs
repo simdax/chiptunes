@@ -102,7 +102,7 @@ export default class {
     }
 
     freq(index, freq) {
-        this.allSounds[index].frequency.value = freq;
+        this.freqs[index].value = freq;
     }
 
 }
