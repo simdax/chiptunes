@@ -1,4 +1,4 @@
-import audio from './AudioContext.mjs';
+import audio from '../AudioContext.mjs';
 
 let Modulator;
 let Carrier;

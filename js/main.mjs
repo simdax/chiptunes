@@ -1,15 +1,17 @@
 import { midi_to_freq, play_mel } from './utils.mjs';
-import FMNode from './webaudio.mjs';
+// import FMNode from './nodes/fm.mjs';
+import Simple from './nodes/simple.mjs';
 import { event } from './slider.mjs';
 import cursor, { print_vals } from './cursor.mjs';
-import get_analyseur, { Visualizers } from './visu.mjs';
+import get_analyseur, { Visualizers } from './Visualiser.mjs';
 
 const start = document.querySelector('#start');
 const canvas = document.querySelector('canvas');
 
 get_analyseur.then(analyseur => {
     const visualizers = new Visualizers();
-    const node = new FMNode();
+    // const node = new FMNode();
+    const node = new Simple();
     node.analyseur = analyseur;
 
     event.push((x, y) => {

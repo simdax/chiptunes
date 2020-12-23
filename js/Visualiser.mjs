@@ -7,14 +7,14 @@ export default ctx.then(audio => {
   return analyseur;
 })
 
-class pVisu {
+export class Visualizer {
   renduVisuel;
 
   constructor(label) {
     this.label = label;
   }
 
-  visualize(type) {
+  visualize(type, analyseur) {
     const canvas = document.querySelector(this.label);
     const canvasCtx = canvas.getContext('2d');
     const LARGEUR = canvas.width;
@@ -66,16 +66,17 @@ class pVisu {
 
 }
 
+
 export class Visualizers {
 
   constructor() {
-    this.time = new pVisu('#visu');
-    this.freq = new pVisu('#freq');
+    this.time = new Visualizer('#visu');
+    this.freq = new Visualizer('#freq');
   }
 
   visualize() {
-    this.time.visualize('getByteTimeDomainData');
-    this.freq.visualize('getByteFrequencyData');
+    this.time.visualize('getByteTimeDomainData', analyseur);
+    this.freq.visualize('getByteFrequencyData', analyseur);
   }
 
   clean() {
